@@ -8,12 +8,12 @@
 #
 # Now I'm working on the Step-1 for the statistics of single grid box classification 
 #
-#fun.lu.type <- function (xmin=234, xmax=234, ymin=209, ymax=209, wrk_yr=2015, aoi_reg = c("TAIPEI"))
+fun.lu.type <- function (xmin=234, xmax=234, ymin=209, ymax=209, wrk_yr=2015, aoi_reg = c("TAIPEI"))
 # start the fun.lu.type
-#{
-aoi_reg="XY_TAIPEI"
-wrk_yr=2023
-xmin=235;xmax=235;ymin=206;ymax=206
+{
+#aoi_reg="XY_TAIPEI"
+#wrk_yr=2023
+#xmin=235;xmax=235;ymin=206;ymax=206
 
 #load libraries  
 library(raster)
@@ -654,9 +654,9 @@ while (tree==TRUE){
         png(paste(image_path,yr,"_",allaoi[aoi],"_tree20.png",sep=""),
             width = 1080, height = 1080, units = "px")
       }
-      #plot(outputraster,
-      #     col=colors)
-      #dev.off()
+      plot(outputraster,
+           col=colors)
+      dev.off()
       
       #print(paste("please check the image file:", image_path,yr,"_",allaoi[aoi],".png",sep="") )
       # print current time
@@ -708,7 +708,7 @@ while (tree==TRUE){
 ## end of function fun.lu.type 
 
 
-#}
+}
 
 #========== Set the script to Auto RUN=========================== 
 # Satrt the funtion byt the specific arguments 
@@ -716,9 +716,9 @@ while (tree==TRUE){
 # following lines, which allowed this R-script can be called under the shell/bash script
 # with the arguments sending by specific batch jobs  
 #
-#args<-commandArgs(TRUE)
-#print(args)
-#fun.lu.type(args[1], args[2], args[3], args[4], args[5], args[6]) 
+args<-commandArgs(TRUE)
+print(args)
+fun.lu.type(args[1], args[2], args[3], args[4], args[5], args[6]) 
 #
 #========== End ================================================
 

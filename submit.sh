@@ -48,26 +48,26 @@ CONT=0
 
 wrk_yr="2023"
 
-#aoi_reg="GRID_wholetaiwan"
+aoi_reg="GRID_wholetaiwan"
 #taiwan   
-#for ix in {224..242..4}
-#do
-#xmin=$ix; let xmax=$ix+3
-       
-#for iy in {185..215..5} 
-#do
-#ymin=$iy; let ymax=$iy+4 
-
-#separate to first and second half taiwan to run because sometimes jobs don't all run fully for some reason, misses some
-aoi_reg="GRID_firsthalf_taiwan"
-#taiwan   
-for ix in {224..228..4}
+for ix in {224..242..4}
 do
 xmin=$ix; let xmax=$ix+3
        
 for iy in {185..215..5} 
 do
 ymin=$iy; let ymax=$iy+4 
+
+#separate to first and second half taiwan to run because sometimes jobs don't all run fully for some reason, misses some
+#aoi_reg="GRID_firsthalf_taiwan"
+#taiwan   
+#for ix in {224..228..4}
+#do
+#xmin=$ix; let xmax=$ix+3
+       
+#for iy in {185..215..5} 
+#do
+#ymin=$iy; let ymax=$iy+4 
 
 #aoi_reg="GRID_secondhalf_taiwan"
 #taiwan   
@@ -157,7 +157,7 @@ REPLACEMENT_VALUE="\/lfs\/home\/ychen\/lfs_dir\/scripts\/R\/Rscripts\/apcm_final
 sed -i -c "s/$TARGET_KEY/$REPLACEMENT_VALUE/" $CONFIG_FILE
 
 TARGET_KEY="R_filename"
-REPLACEMENT_VALUE="SPOT_step1_241026.R"
+REPLACEMENT_VALUE="SPOT_step1_241026_df_stat.R"
 sed -i -c "s/$TARGET_KEY/$REPLACEMENT_VALUE/" $CONFIG_FILE
 
 # RE-SET THE PARAMETER VALUES FOR EACH JOB
