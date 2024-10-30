@@ -142,6 +142,16 @@ while (tree==TRUE){
    #aoi loop start 
 
     for (aoi in 1:length(allaoi)){
+    #load libraries  
+    library(raster)
+    library(tidyverse)
+    library(rpart)
+    #library(rpart.plot)
+    library(rgdal)
+ 
+
+
+
       print(allaoi[aoi])
       if (yr==2017){ #separate if statement for years 2017 2018 to bind two year's images to classify
         #direct to directory of 2017 images
@@ -272,6 +282,8 @@ while (tree==TRUE){
             rasterallpoints[,month+13] <- NA #ex. NIR january column is the 1+13=14 14th column
             next
           }else{
+
+         #
             #loop to stack images with same month and aoi to calculate median NDVI & NIR
             for (image in 1:length(subset_aoiimages)){
               if (substr(subset_aoiimages[image],start=7,stop=10)==2017){
@@ -346,6 +358,10 @@ while (tree==TRUE){
       }else if (yr==2018){
         next #skip year 2018 since 2018 result is merged with 2017
       }else{
+
+
+
+
         #direct to directory based on year
         directory <- paste("/lfs/home/ychen/lfs_dir/Satellite/SPOT_CSRSR/grid_box/",yr,"/",sep="")
         #create list of SPOT image under directory that satisfy condition
@@ -680,22 +696,24 @@ while (tree==TRUE){
  
       xid=mesh.12km@data$XID[imesh]
       yid=mesh.12km@data$YID[imesh]
-
+      
+      
       print( paste("mesh_index:",imesh, "XID:", xid, " YID:", yid, sep="") )
       #unload libraries  
        detach("package:raster")
        detach("package:tidyverse")
        detach("package:rpart")
        detach("package:rgdal")
-#     
+      #     
+      #clean memory()
+      gc()
       # call the funtion for calcuating the satatistic of each dataframe
       source("upscale_mesh.R")
+      #
       fun.up.scale(img_index=imesh,
                    img_path=paste(image_path,yr,"_",allaoi[aoi],"_tree20.tif",sep=""),
                    ref_buf=250,
                    wrk_yr=wrk_yr)
-
-
 
     } #end of aoi-for loop
   } #end of yr-for loop
